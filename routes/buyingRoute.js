@@ -4,7 +4,7 @@ const BuyingItem = mongoose.model('buyingItems');
 const numeral = require('numeral');
 
 module.exports = (app) => {
-    app.post('/buyingItem/create', requireLogin, async (req, res) => {
+    app.post('/buyingItem/create',  async (req, res) => {
         const { picture, name, limit, buyFor, sellFor, howMany} = req.body
 
         const formatBuyFor = numeral(buyFor).value();
@@ -24,12 +24,12 @@ module.exports = (app) => {
         const newItem = await item.save()
         res.send(newItem)
     })
-    app.get('/buyingItem/items', requireLogin, async (req, res) => {
+    app.get('/buyingItem/items', async (req, res) => {
         const item = await BuyingItem.find({ _user: req.user.id })
 
         res.send(item)
     })
-    app.delete('/buyingItem/delete', requireLogin, async (req, res) => {
+    app.delete('/buyingItem/delete', async (req, res) => {
         BuyingItem.findByIdAndRemove(req.body.item, (err, item) => {
            if(!err){
                res.send(item)

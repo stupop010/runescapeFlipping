@@ -11,13 +11,13 @@ module.exports = (app) => {
         const item = await Item.findByIdAndUpdate(req.query.id);
         res.send(item)
     });
-    app.patch('/api/edit/id', requireLogin, async (req, res) => {
+    app.patch('/api/edit/id', async (req, res) => {
         const item = await Item.findByIdAndUpdate(req.body._id, {
             $set: {limit: req.body.limit}
         });
         res.send(item)
     });
-    app.delete('/api/delete', requireLogin, async (req, res) => {
+    app.delete('/api/delete', async (req, res) => {
         Item.findByIdAndRemove(req.body.item, (err, item) => {
            if(!err){
                res.send(item)
@@ -26,7 +26,7 @@ module.exports = (app) => {
            }
         })
     })
-    app.post('/api/create', requireLogin, async (req, res) => {
+    app.post('/api/create', async (req, res) => {
         const item = await Item.create(req.body)
         res.send(item)
     })
