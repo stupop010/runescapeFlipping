@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ProfileCard from './profileCard';
 
 class ProfileGains extends Component{
@@ -13,14 +12,10 @@ class ProfileGains extends Component{
         const isLoggedIn = this.props.auth
         return( 
             <div>
-                {isLoggedIn ? this.reRenderLogin(isLoggedIn) : 'Loding'}
+                {isLoggedIn ? this.reRenderLogin(isLoggedIn) : null}
             </div>
         )
     }
 }
 
-function mapStateToProps({auth}){
-    return { auth }
-}
-
-export default connect(mapStateToProps)(ProfileGains);
+export default ProfileGains;
