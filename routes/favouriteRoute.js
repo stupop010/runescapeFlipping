@@ -8,8 +8,8 @@ module.exports = (app) => {
         // getting all the favourties
         const favourties = await Favourite.find({ _user: req.user.id, id})
 
-        if(favourties){
-            console.log(favourties)
+        if(favourties.length){
+            res.status(400).send('Already a favourtie')
         } else {
             const favourite = new Favourite({
                 name,
@@ -21,5 +21,11 @@ module.exports = (app) => {
     
             res.send(newFavourite)
         }
+    })
+
+    app.get('/favourite/fetch', async (req, res) => {
+        const items = await Favourite.find({ _user: req.user.id })
+
+        res.send(items)
     })
 }

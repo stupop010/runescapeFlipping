@@ -25,37 +25,49 @@ class App extends Component {
   componentDidMount(){
     this.props.fetchUser();
   }
+  reRender = () => {
+    if(!this.props.auth){
+      return (
+        <div>
+          Please Log in 
+        </div>
+      )
+    } else {
+      return(
+              <div>
+              <div className="row">
+              <div className="col-sm-2">
+                  <Favourite />
+              </div>
+              <div className="col col-sm-8">
+                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/log" component={ItemLog} />
+                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/admin/create" component={CreateItem} />
+                <Route exact path="/admin/edit/:id" component={AdminItem} />
+                <Route exact path="/admin/delete/:id" component={DeleteItem} />
+              </div>
+              <div className="col-sm-2">
+                  <div>
+                      <ProfileGains auth={this.props.auth}/>
+                  </div>
+                  <div style={{backgroundColor: '#999D9E'}} className="border border-dark">
+                      <RecentLog />
+                  </div>
+              </div>
+              </div>
+          </div>
+          )
+      }
+  }
 
   render() {
-    console.log(this.props)
     return(
       <div>
         <Router history={history}>
            <>
             <Header />
-                <div>
-                    <div className="row">
-                    <div className="col-sm-2">
-                        <Favourite />
-                    </div>
-                    <div className="col col-sm-8">
-                      <Route exact path="/" component={Dashboard} />
-                      <Route exact path="/log" component={ItemLog} />
-                      <Route exact path="/admin" component={Admin} />
-                      <Route exact path="/admin/create" component={CreateItem} />
-                      <Route exact path="/admin/edit/:id" component={AdminItem} />
-                      <Route exact path="/admin/delete/:id" component={DeleteItem} />
-                    </div>
-                    <div className="col-sm-2">
-                        <div>
-                            <ProfileGains auth={this.props.auth}/>
-                        </div>
-                        <div style={{backgroundColor: '#999D9E'}} className="border border-dark">
-                            <RecentLog />
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                {this.reRender()}
             <Footer />
           </>
          </Router>

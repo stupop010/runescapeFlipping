@@ -10,7 +10,7 @@ import BuyingItem from './buyingItem';
 class DashBoard extends Component{
     componentDidMount(){
         this.props.fetchItems();
-        this.props.fetchFavourite();
+        // this.props.fetchFavourite();
       };
 
     render(){

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history'
-import { FETCH_ITEMS, DELETE_ITEM, EDIT_ITEM, FETCH_ITEM, CREATE_ITEM, CREATE_BUYING_ITEM, FETCH_BUYING_ITEM, DELETE_BUYING_ITEM, FETCH_ITEM_LOG, FETCH_USER, CREATE_ITEM_LOG, ADD_FAVOURITE, FETCH_FAVOURITE } from './types';
+import { FETCH_ITEMS, DELETE_ITEM, EDIT_ITEM, FETCH_ITEM, CREATE_ITEM, CREATE_BUYING_ITEM, FETCH_BUYING_ITEM, DELETE_BUYING_ITEM, FETCH_ITEM_LOG, FETCH_USER, CREATE_ITEM_LOG, ADD_FAVOURITE, FETCH_FAVOURITE, GET_ERRORS, FAVOURITE_FAILED } from './types';
 
 
 // Fetching user
@@ -88,26 +88,35 @@ export const fetchItemLog = () => async dispatch => {
 export const createItemLog = (item) => async dispatch => {
     const res = await axios.post('/itemlog/create', item)
     
-    console.log(res)
     dispatch({ type: CREATE_ITEM_LOG, payload: res.data })
 }
 
 // Favourites
 export const addFavourite = (item) => async dispatch => {
-    console.log('index')
     try{
         const res = await axios.post('/favourite/add', item)
-        console.log(res)
+        dispatch({ type: ADD_FAVOURITE, payload: res.data })
     } catch(err){
-        console.log(err)
+        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch({
+            type: FAVOURITE_FAILED
+          });
     }
-    dispatch({ type: ADD_FAVOURITE, payload: [] })
 }
 
 export const fetchFavourite = () => async dispatch => {
     const res = await axios.get('/favourite/fetch')
 
-    dispatch({ type: FETCH_FAVOURITE, payload: []})
+    dispatch({ type: FETCH_FAVOURITE, payload: res.data})
 }
 
-//
+
+// Errors 
+
+export const returnErrors = (msg, status) => {
+    return {
+        type: GET_ERRORS,
+        payload: { msg, status }
+      };
+
+};

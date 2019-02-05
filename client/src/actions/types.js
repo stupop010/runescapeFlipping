@@ -16,3 +16,7 @@ export const FETCH_USER = 'fetch_user';
 
 export const ADD_FAVOURITE = 'add_favourite'
 export const FETCH_FAVOURITE = 'fetch_favourite'
+
+export const GET_ERRORS = 'get_errors'
+
+export const FAVOURITE_FAILED = 'favourite_failed'
