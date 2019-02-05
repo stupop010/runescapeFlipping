@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const requireLogin = require('../middleware/requireLogin');
 const Item = mongoose.model('items')
 
 module.exports = (app) => {

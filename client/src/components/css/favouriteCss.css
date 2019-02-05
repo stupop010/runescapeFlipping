@@ -1,0 +1,24 @@
+ul {
+    list-style-type: none;
+}
+
+.contanier{
+    font-size: 13px;
+    text-align: center;
+}
+
+.favourite-span{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.favourite-button{
+    background: none;
+    border: none;
+}
+
+.favourite-button:hover{
+    font-size: 17px;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration-line: underline;
+}

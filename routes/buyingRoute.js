@@ -1,27 +1,23 @@
 const mongoose = require('mongoose');
-const requireLogin = require('../middleware/requireLogin');
 const BuyingItem = mongoose.model('buyingItems');
-const numeral = require('numeral');
+const Item = mongoose.model('items')
 
 module.exports = (app) => {
     app.post('/buyingItem/create',  async (req, res) => {
-        const { picture, name, limit, buyFor, sellFor, howMany} = req.body
-
-        const formatBuyFor = numeral(buyFor).value();
-        const formatSellFor = numeral(sellFor).value();
-
-        const item = new BuyingItem({
+        console.log(req.body.item)
+        const item = await Item.find({_id: req.body.item})
+        console.log(item[0])
+        const { picture, name, limit} = item[0]
+        console.log(picture)
+        const buyingItem = new BuyingItem({
             picture,
             name,
             limit,
-            howMany,
-            buyFor: formatBuyFor,
-            sellFor: formatSellFor,
             _user: req.user.id,
             date: Date.now()
         })
         
-        const newItem = await item.save()
+        const newItem = await buyingItem.save()
         res.send(newItem)
     })
     app.get('/buyingItem/items', async (req, res) => {

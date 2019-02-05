@@ -50,11 +50,10 @@ export const createItem = (formValues) => async dispatch =>{
 }
 
 // buying item
-export const createBuyingItem = (formValues) => async dispatch =>{
-    const res = await axios.post('/buyingItem/create', formValues)
+export const createBuyingItem = (id) => async dispatch =>{
+    const res = await axios.post('/buyingItem/create', {item: id})
 
     dispatch({ type: CREATE_BUYING_ITEM, payload: res.data})
-    history.push('/')
 }
 
 export const fetchBuyingItems = () => async dispatch =>{

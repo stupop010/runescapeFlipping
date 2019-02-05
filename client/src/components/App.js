@@ -12,9 +12,7 @@ import history from '../history';
 import CreateItem from './adminItem/CreateItem';
 import ItemLog from './ItemLog';
 import Footer from './Footer';
-import Search from './Search';
 import Favourite from './Favourite';
-import BuyingItem from './buyingItem';
 import RecentLog from './RecentLog';
 import ProfileGains from './profileGains/profileGains';
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchItems, fetchFavourite } from '../actions';
 
 import Search from './Search';
-import Favourite from './Favourite';
 import BuyingItem from './buyingItem';
 
 

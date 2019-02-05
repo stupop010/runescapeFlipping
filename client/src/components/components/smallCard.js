@@ -7,7 +7,7 @@ import ImageCard from './imageCard';
 
 class SmallCard extends Component{
     onSubmit = (e) => {
-        this.props.createBuyingItem(this.props.item)
+        this.props.createBuyingItem(this.props.item._id)
         this.props.clearSearch(e)
         e.preventDefault()
     }
@@ -16,7 +16,6 @@ class SmallCard extends Component{
             name,
             id
         }
-        console.log(this.props)
         this.props.addFavourite(item)
         e.preventDefault()
     }
