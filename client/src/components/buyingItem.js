@@ -81,7 +81,7 @@ class BuyingItem extends Component{
                         </div>
                     </div>       
                 )
-            })
+            }).reverse()
         )
     }
 }
