@@ -45,7 +45,4 @@ mongoose.connect(keys.mongoDB, { useNewUrlParser: true }).then(()=>{
 }).catch(err => {
     console.log(err)
 })
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//     console.log('app running on port 5000')
-// })  
+  

@@ -4,11 +4,8 @@ const Item = mongoose.model('items')
 
 module.exports = (app) => {
     app.post('/buyingItem/create',  async (req, res) => {
-        console.log(req.body.item)
         const item = await Item.find({_id: req.body.item})
-        console.log(item[0])
         const { picture, name, limit} = item[0]
-        console.log(picture)
         const buyingItem = new BuyingItem({
             picture,
             name,
@@ -30,7 +27,7 @@ module.exports = (app) => {
            if(!err){
                res.send(item)
            } else {
-               console.log(err)
+               throw err;
            }
         })
     })

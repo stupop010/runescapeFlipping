@@ -21,7 +21,7 @@ module.exports = (app) => {
            if(!err){
                res.send(item)
            } else {
-               console.log(err)
+               throw err;
            }
         })
     })
