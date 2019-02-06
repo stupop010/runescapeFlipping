@@ -3,13 +3,10 @@ import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-import Admin from './admin';
-import AdminItem from './adminItem/AdminItem';
-import DeleteItem from './adminItem/deleteItem';
+
 import Header from './header';
 import Dashboard from './Dashboard';
 import history from '../history';
-import CreateItem from './adminItem/CreateItem';
 import ItemLog from './ItemLog';
 import Footer from './Footer';
 import Favourite from './Favourite';
@@ -40,10 +37,6 @@ class App extends Component {
               <div className="col col-sm-8">
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/log" component={ItemLog} />
-                <Route exact path="/admin" component={Admin} />
-                <Route exact path="/admin/create" component={CreateItem} />
-                <Route exact path="/admin/edit/:id" component={AdminItem} />
-                <Route exact path="/admin/delete/:id" component={DeleteItem} />
               </div>
               <div className="col-sm-2">
                   <div>
