@@ -12,7 +12,7 @@ require('./models/Itemlog');
 require('./models/Favourite');
 require('./services/passport');
 
-mongoose.connect(keys.mongoDB, { useNewUrlParser: true })
+//mongoose.connect(keys.mongoDB, { useNewUrlParser: true })
 
 const app = express();
 
@@ -37,8 +37,15 @@ require('./routes/itemsRoute')(app);
 require('./routes/buyingRoute')(app);
 require('./routes/favouriteRoute')(app);
 
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+mongoose.connect(keys.mongoDB, { useNewUrlParser: true }).then(()=>{
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
     console.log('app running on port 5000')
-})  
+}) 
+}).catch(err => {
+    console.log(err)
+})
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//     console.log('app running on port 5000')
+// })  
